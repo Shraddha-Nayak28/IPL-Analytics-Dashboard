@@ -57,7 +57,7 @@ The `.pbix` file contains **4 report pages**:
 
 ## Key Findings
 
-- Teams that win the toss and choose to **field first** win approximately **52%** of the time — a slight but consistent edge.
+- Teams that win the toss and choose to **field first** win approximately **52%** of the time a slight but consistent edge.
 - **Mumbai Indians** has the highest overall win count across all IPL seasons.
 - **Death overs (16–20)** produce significantly higher run rates than powerplay overs on average.
 - **Wankhede Stadium (Mumbai)** and **Chinnaswamy Stadium (Bangalore)** are the highest-scoring venues.
@@ -68,7 +68,7 @@ The `.pbix` file contains **4 report pages**:
 ## How to Run the SQL Queries
 
 1. Download `matches.csv` and `deliveries.csv` from the Kaggle link above
-2. Open [DB Browser for SQLite](https://sqlitebrowser.org/) (free tool)
+2. Open [DB Browser for SQLite](https://sqlitebrowser.org/)
 3. Create a new database and import both CSV files as tables named `matches` and `deliveries`
 4. Open `ipl_analysis_queries.sql` and run each query block
 
@@ -76,7 +76,7 @@ The `.pbix` file contains **4 report pages**:
 
 ## How to Open the Power BI Dashboard
 
-1. Install [Power BI Desktop](https://powerbi.microsoft.com/desktop/) (free)
+1. Install [Power BI Desktop](https://powerbi.microsoft.com/desktop/)
 2. Open `IPL_Analytics_Dashboard.pbix`
 3. If prompted about data source, point it to the local CSV files
 4. Use the slicers on each page to filter by season, team, or venue
