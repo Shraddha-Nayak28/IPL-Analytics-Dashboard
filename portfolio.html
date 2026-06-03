@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPL Analytics Dashboard — BI Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f5f4f0;
+    color: #1a1a1a;
+    line-height: 1.6;
+  }
+
+  .hero {
+    background: #0a1628;
+    color: #fff;
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(255,184,0,0.06);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: rgba(255,184,0,0.04);
+  }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #FFB800;
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 10vw, 88px);
+    line-height: 0.95;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  .hero h1 span { color: #FFB800; }
+  .hero-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .hero-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero-tag {
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,184,0,0.35);
+    color: #FFB800;
+  }
+
+  .container { max-width: 860px; margin: 0 auto; padding: 3rem 1.5rem; }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 3rem;
+  }
+  .metric {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.25rem;
+    border: 1px solid #e8e8e4;
+  }
+  .metric-val {
+    font-size: 32px;
+    font-weight: 500;
+    color: #FFB800;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .metric-label { font-size: 13px; color: #666; }
+  .metric-sub { font-size: 11px; color: #aaa; margin-top: 2px; }
+
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 1.75rem;
+    border: 1px solid #e8e8e4;
+    margin-bottom: 1.5rem;
+  }
+  .card h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #FFB800; flex-shrink: 0; }
+
+  .file-list { list-style: none; }
+  .file-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f0f0ec;
+    font-size: 14px;
+  }
+  .file-list li:last-child { border-bottom: none; }
+  .file-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .file-name { font-weight: 500; color: #1a1a1a; }
+  .file-desc { font-size: 12px; color: #888; margin-top: 2px; }
+
+  .findings {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .finding {
+    background: #fafaf7;
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+    border-left: 3px solid #FFB800;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.5;
+  }
+
+  .skills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill {
+    font-size: 13px;
+    padding: 6px 14px;
+    background: #f5f4f0;
+    border-radius: 8px;
+    color: #333;
+    border: 1px solid #e5e4e0;
+  }
+
+  .about-text {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.8;
+  }
+  .about-text strong { color: #1a1a1a; font-weight: 500; }
+
+  .steps { counter-reset: step; }
+  .step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 1rem;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+  }
+  .step-num {
+    width: 26px; height: 26px;
+    background: #0a1628;
+    color: #FFB800;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 12px;
+    color: #aaa;
+    border-top: 1px solid #e8e8e4;
+    background: #fff;
+  }
+
+  @media (max-width: 600px) {
+    .findings { grid-template-columns: 1fr; }
+    .metrics { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">BI &amp; Data Analysis Portfolio</div>
+  <h1>IPL<br><span>Analytics</span><br>Dashboard</h1>
+  <p class="hero-sub">Business Intelligence · SQL · Power BI · Sports Data</p>
+  <div class="hero-tags">
+    <span class="hero-tag">Power BI</span>
+    <span class="hero-tag">SQL</span>
+    <span class="hero-tag">Data Analysis</span>
+    <span class="hero-tag">Sports Analytics</span>
+    <span class="hero-tag">Kaggle Dataset</span>
+    <span class="hero-tag">Self-Initiated</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="section-label">Project at a glance</div>
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-val">2008<br>–2024</div>
+      <div class="metric-label">Seasons covered</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">950+</div>
+      <div class="metric-label">Match records</div>
+      <div class="metric-sub">Ball-by-ball data</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">4</div>
+      <div class="metric-label">Dashboard pages</div>
+      <div class="metric-sub">Power BI report</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">10</div>
+      <div class="metric-label">SQL queries</div>
+      <div class="metric-sub">Across 3 themes</div>
+    </div>
+  </div>
+
+  <div class="section-label">Project files</div>
+  <div class="card">
+    <ul class="file-list">
+      <li>
+        <div class="file-icon" style="background:#fff8e1; color:#f57f17;">📊</div>
+        <div>
+          <div class="file-name">IPL_Analytics_Dashboard.pbix</div>
+          <div class="file-desc">Power BI dashboard · 4 pages · slicers by team, season, venue</div>
+        </div>
+      </li>
+      <li>
+        <div class="file-icon" style="background:#e3f2fd; color:#1565c0;">🗃️</div>
+        <div>
+          <div class="file-name">ipl_analysis_queries.sql</div>
+          <div class="file-desc">10 SQL queries · win-rate, toss impact, top scorers, venue stats, phase analysis</div>
+        </div>
+      </li>
+      <li>
+        <div class="file-icon" style="background:#e8f5e9; color:#2e7d32;">📄</div>
+        <div>
+          <div class="file-name">README.md</div>
+          <div class="file-desc">Project documentation · methodology · key findings · how to run</div>
+        </div>
+      </li>
+      <li>
+        <div class="file-icon" style="background:#fce4ec; color:#880e4f;">📁</div>
+        <div>
+          <div class="file-name">matches.csv &amp; deliveries.csv</div>
+          <div class="file-desc">Raw dataset from Kaggle · IPL Complete Dataset 2008–2024</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section-label">Dashboard coverage</div>
+  <div class="card">
+    <h3><span class="dot"></span>4 Report Pages in Power BI</h3>
+    <div class="findings" style="margin-top: 0.5rem;">
+      <div class="finding"><strong>Overview</strong> — Season-wise match count, total runs, title winners leaderboard</div>
+      <div class="finding"><strong>Team Performance</strong> — Win rates, toss decision impact, head-to-head stats</div>
+      <div class="finding"><strong>Batting Analysis</strong> — Top run scorers, powerplay vs death over trends</div>
+      <div class="finding"><strong>Venues &amp; Bowling</strong> — Top wicket takers, venue-wise outcomes, city map</div>
+    </div>
+  </div>
+
+  <div class="section-label">Key findings</div>
+  <div class="card">
+    <div class="findings">
+      <div class="finding">Teams choosing to <strong>field first</strong> after winning the toss win ~52% of the time</div>
+      <div class="finding"><strong>Mumbai Indians</strong> leads all-time win count across IPL seasons</div>
+      <div class="finding"><strong>Death overs</strong> consistently produce higher run rates than powerplay overs</div>
+      <div class="finding"><strong>Wankhede &amp; Chinnaswamy</strong> are the highest-scoring venues in IPL history</div>
+    </div>
+  </div>
+
+  <div class="section-label">Skills demonstrated</div>
+  <div class="card">
+    <div class="skills">
+      <span class="skill">SQL aggregation queries</span>
+      <span class="skill">JOINs &amp; subqueries</span>
+      <span class="skill">CASE WHEN logic</span>
+      <span class="skill">Power BI DAX measures</span>
+      <span class="skill">Data modeling</span>
+      <span class="skill">Table relationships</span>
+      <span class="skill">Dashboard design</span>
+      <span class="skill">KPI reporting</span>
+      <span class="skill">Slicer &amp; filter design</span>
+      <span class="skill">CSV data handling</span>
+      <span class="skill">Data cleaning</span>
+      <span class="skill">Insight communication</span>
+    </div>
+  </div>
+
+  <div class="section-label">How to explore this project</div>
+  <div class="card">
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div>Download <strong>matches.csv</strong> and <strong>deliveries.csv</strong> from the Kaggle link in README.md</div></div>
+      <div class="step"><div class="step-num">2</div><div>Open <strong>ipl_analysis_queries.sql</strong> in DB Browser for SQLite (free) to explore the raw SQL analysis</div></div>
+      <div class="step"><div class="step-num">3</div><div>Open <strong>IPL_Analytics_Dashboard.pbix</strong> in Power BI Desktop (free) and point data source to local CSV files</div></div>
+      <div class="step"><div class="step-num">4</div><div>Use the slicers on each dashboard page to filter by <strong>season, team, and venue</strong></div></div>
+    </div>
+  </div>
+
+  <div class="section-label">About this project</div>
+  <div class="card">
+    <p class="about-text">I'm an <strong>engineering graduate</strong> exploring roles in data analytics and business intelligence. This project was built entirely on my own initiative using a publicly available Kaggle dataset — to practice a full BI workflow from <strong>raw data ingestion → SQL analysis → Power BI dashboard</strong>. Cricket data made it engaging to dig into, and the project helped me understand how real reporting tools connect structured data to visual insights.</p>
+  </div>
+
+</div>
+
+<footer>
+  Dataset: Kaggle · IPL Complete Dataset (2008–2024) &nbsp;|&nbsp; Built with Power BI Desktop &amp; SQL &nbsp;|&nbsp; June 2026
+</footer>
+
+</body>
+</html>
