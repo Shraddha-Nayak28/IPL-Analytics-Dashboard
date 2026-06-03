@@ -6,7 +6,7 @@
 ## STEP 1: Get the Dataset from Kaggle
 
 1. Go to: https://www.kaggle.com/datasets/patrickb1912/ipl-complete-dataset-20082020
-2. Click **Download** (you need a free Kaggle account)
+2. Click **Download** (Kaggle)
 3. Extract the ZIP — you will get:
    - `matches.csv`
    - `deliveries.csv`
