@@ -190,4 +190,3 @@ IF(deliveries[over] <= 14, "Middle", "Death"))
 
 ---
 
-*This guide is specific to Power BI Desktop (free version). All steps work without a Power BI Pro subscription.*
