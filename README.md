@@ -5,19 +5,20 @@
 
 ## Overview
 
-This project analyzes **Indian Premier League (IPL) cricket data from 2008 to 2024** using SQL for data exploration and Power BI for interactive dashboards. It was built as a self-initiated learning project to demonstrate end-to-end BI skills — from raw CSV data to actionable insights.
+This project analyzes Indian Premier League (IPL) data (2008–2024) using SQL and Power BI to generate insights on team performance, player statistics, and match trends.
+
+The goal is to demonstrate end-to-end data analytics skills including data extraction, transformation, visualization, and insight generation.
 
 ---
 
 ## Dataset
 
-**Source:** [Kaggle — IPL Complete Dataset (2008–2024)](https://www.kaggle.com/datasets/patrickb1912/ipl-complete-dataset-20082020)
+**Source:** Kaggle — IPL Complete Dataset (2008–2024)  
+https://www.kaggle.com/datasets/patrickb1912/ipl-complete-dataset-20082020
 
-**Files used:**
-| File | Description |
-|------|-------------|
-| `matches.csv` | One row per match — teams, venue, toss, result, winner |
-| `deliveries.csv` | Ball-by-ball data — batsman, bowler, runs, dismissals |
+> Note: Dataset files are not included in this repository due to GitHub file size limitations.
+> You can download them from the Kaggle link above to reproduce the analysis.
+├── (Dataset available via Kaggle link)
 
 ---
 
@@ -33,18 +34,13 @@ This project analyzes **Indian Premier League (IPL) cricket data from 2008 to 20
 
 ```
 ipl_analytics_portfolio/
-│
-├── matches.csv                    ← Raw dataset (from Kaggle)
-├── deliveries.csv                 ← Raw dataset (from Kaggle)
-│
 ├── ipl_analysis_queries.sql       ← All SQL queries used for analysis
 ├── IPL_Analytics_Dashboard.pbix   ← Power BI dashboard file
 │
 ├── portfolio.html                 ← Portfolio summary page
 └── README.md                      ← This file
-```
 
----
+```
 
 ## Dashboard Pages (Power BI)
 
@@ -102,6 +98,3 @@ The `.pbix` file contains **4 report pages**:
 
 Built by an engineering graduate as a self-learning project to explore BI tools and data analytics workflows. All data is publicly available via Kaggle under open license.
 
----
-
-*Last updated: June 2026*
