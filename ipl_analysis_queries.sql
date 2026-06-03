@@ -146,10 +146,3 @@ SELECT
 FROM matches
 WHERE result IS NOT NULL
 GROUP BY result;
-
-
--- ============================================================
--- NOTE: Adjust column names if your Kaggle CSV uses
--- slightly different headers (e.g., 'id' vs 'match_id').
--- Import CSVs into SQLite / MySQL before running these.
--- ============================================================
